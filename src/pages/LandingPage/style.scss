@@ -1,0 +1,18 @@
+.landing-page-container {
+  height: 100%;
+
+  @media (prefers-color-scheme: dark) {
+    .category-selector {
+      color: #fff;
+      svg {
+        color: #fff;
+      }
+      fieldset {
+        border-color: #fff;
+        legend {
+          display: none;
+        }
+      }
+    }
+  }
+}
