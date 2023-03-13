@@ -20,6 +20,28 @@ button {
   font-size: 1.2rem;
   padding: 1.6rem 3rem;
   min-width: 300px;
+
+  &.restart-btn {
+    max-width: 150px;
+    align-self: center;
+    margin-bottom: 1.6rem;
+    @media screen and (width > 575) {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      margin-bottom: 0;
+      align-self: unset;
+    }
+  }
+}
+
+.round-time-bar {
+  margin: 1rem 0;
+  max-width: 800px;
+  height: 5px;
+  div {
+    height: 5px;
+  }
 }
 
 .btn {

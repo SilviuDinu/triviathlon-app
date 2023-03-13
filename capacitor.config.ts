@@ -4,7 +4,7 @@ const config: CapacitorConfig = {
   appId: 'com.silviualex.triviathlon',
   appName: 'Triviathlon',
   webDir: 'dist',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
 };
 
 export default config;

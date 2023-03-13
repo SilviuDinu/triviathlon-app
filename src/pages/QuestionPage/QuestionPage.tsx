@@ -70,12 +70,16 @@ function QuestionPage({ category }: any) {
   }, [category]);
 
   useEffect(() => {
+    if (!questions.length) {
+      return;
+    }
+
     timerRef.current = setInterval(updateTimer, 1000);
 
     return () => {
       clearInterval(timerRef.current);
     };
-  }, [currentIdx, countDown]);
+  }, [currentIdx, countDown, questions]);
 
   const updateTimer = () => {
     if (countDown < 1) {
@@ -131,12 +135,34 @@ function QuestionPage({ category }: any) {
     <div className='App'>
       {!gameOver ? (
         <>
-          <h2>{countDown} seconds left</h2>
           <button
-            style={{ position: 'absolute', top: '30px', right: '30px' }}
+            // className='restart-btn'
+            style={{ position: 'absolute', top: '30px', right: '20px', maxWidth: '150px' }}
             onClick={resetGame}>
             Restart game
           </button>
+          {questions.length > 0 && (
+            <h2 style={{ justifySelf: 'flex-start' }}>
+              {currentIdx} / {questions.length}
+            </h2>
+          )}
+          {questions.length > 0 && (
+            <div>
+              {true && (
+                <div
+                  className='round-time-bar'
+                  style={
+                    {
+                      transform: `scaleX(${countDown / COUNTDOWN_TIME})`,
+                      background: `hsl(${(countDown / COUNTDOWN_TIME) * 100}, 100%, 50%)`,
+                    } as any
+                  }>
+                  <div></div>
+                </div>
+              )}
+            </div>
+          )}
+
           <div className='question-container'>
             <h2>{escapeHtml(questions[currentIdx]?.question)}</h2>
           </div>
