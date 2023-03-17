@@ -1,11 +1,12 @@
 import LandingPage from '@pages/LandingPage/LandingPage';
 import QuestionPage from '@pages/QuestionPage/QuestionPage';
+import { categoriesMap } from '@utils/helpers';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
 import './App.scss';
 
 export const App = () => {
-  const [category, setCategory] = useState<string>();
+  const [category, setCategory] = useState<string>(categoriesMap.entries().next().value[1]);
 
   return (
     <div className='page-container'>
@@ -14,7 +15,12 @@ export const App = () => {
           <Switch>
             <Route
               path=''
-              element={<LandingPage onCategoryChoice={(category: string) => setCategory(category)} />}
+              element={
+                <LandingPage
+                  category={category}
+                  onCategoryChoice={(category: string) => setCategory(category)}
+                />
+              }
             />
             <Route
               path='questions'

@@ -25,14 +25,14 @@ function escapeHtml(html: string) {
   return tmp.textContent ?? tmp.innerText ?? '';
 }
 
-function QuestionPage({ category }: any) {
+function QuestionPage({ category }: { category: number | string }) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [countDown, setCountDown] = useState(COUNTDOWN_TIME);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const correctAnswers = useRef(0);
-  const categoryRef = useRef('');
+  const categoryRef = useRef<number | string>('');
   const timerRef = useRef<any>();
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ function QuestionPage({ category }: any) {
   }, []);
 
   const syncQuestions = useCallback(
-    async (category: string) => {
+    async (category: number | string) => {
       if (category === categoryRef.current) {
         return;
       }
@@ -143,7 +143,7 @@ function QuestionPage({ category }: any) {
           </button>
           {questions.length > 0 && (
             <h2 style={{ justifySelf: 'flex-start' }}>
-              {currentIdx} / {questions.length}
+              {currentIdx + 1} / {questions.length}
             </h2>
           )}
           {questions.length > 0 && (

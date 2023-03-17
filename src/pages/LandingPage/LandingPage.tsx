@@ -1,15 +1,13 @@
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { categoriesMap } from '@utils/helpers';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
-export const LandingPage = ({ onCategoryChoice }: any) => {
+export const LandingPage = ({ onCategoryChoice, category }: any) => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState(categoriesMap.entries().next().value[1]);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+    onCategoryChoice(event.target.value as string);
   };
 
   return (

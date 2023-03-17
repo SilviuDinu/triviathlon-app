@@ -3,11 +3,11 @@ import { categoriesMap } from '@utils/helpers';
 import axios from 'axios';
 
 export const fetchQuestions = async ({
-  category = categoriesMap.entries().next().value[0],
+  category = categoriesMap.entries().next().value[1],
   amount = '10',
 }): Promise<{ data: { results: Question[] } }> => {
   const params = new URLSearchParams({
-    category: String(categoriesMap.get(category)),
+    category: category,
     amount: String(amount),
   });
 
